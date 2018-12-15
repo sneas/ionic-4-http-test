@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -9,7 +9,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NativeHttpBackend, NativeHttpFallback, NativeHttpModule } from 'ionic-native-http-connection-backend';
-import { HttpBackend, HttpXhrBackend } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpXhrBackend } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,17 @@ import { HttpBackend, HttpXhrBackend } from '@angular/common/http';
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HttpBackend, useClass: NativeHttpFallback, deps: [Platform, NativeHttpBackend, HttpXhrBackend] },
+    {
+      provide: APP_INITIALIZER,
+        useFactory: (httpClient: HttpClient) => () =>
+            httpClient.get('https://httpbin.org/get').pipe(
+                tap(data => {
+                    console.log('Data retrieved under APP_INITIALIZER', data);
+                })
+            ).toPromise(),
+        multi: true,
+        deps: [ HttpClient ]
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -26,7 +26,7 @@ export class AppComponent {
     });
 
     this.httpClient.get('https://httpbin.org/get').subscribe((data) => {
-      console.log('Data', data);
+      console.log('Data retrieved in AppComponent', data);
     });
   }
 }
