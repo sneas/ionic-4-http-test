@@ -20,13 +20,19 @@ export class AppComponent {
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
+      this.platform.ready().then(() => {
+          this.statusBar.styleDefault();
+          this.splashScreen.hide();
+      });
 
-    this.httpClient.get('https://httpbin.org/get').subscribe((data) => {
-      console.log('Data', data);
-    });
+      const post_payload = {
+          parameter: 'example = string'
+      };
+      const data = new URLSearchParams();
+      data.append('post', JSON.stringify(post_payload));
+
+      this.httpClient.post('https://httpbin.org/post', data.toString()).subscribe((res) => {
+          console.log('Response', res);
+      });
   }
 }
