@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +12,6 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private httpClient: HttpClient
   ) {
     this.initializeApp();
   }
@@ -23,10 +20,6 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-    });
-
-    this.httpClient.get('https://httpbin.org/get').subscribe((data) => {
-      console.log('Data', data);
     });
   }
 }
