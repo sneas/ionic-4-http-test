@@ -6,7 +6,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page implements OnInit{
+export class Tab2Page implements OnInit {
+
   constructor(
       private httpClient: HttpClient
   ) {
@@ -22,4 +23,5 @@ export class Tab2Page implements OnInit{
       console.log('Data', data);
     });
   }
+
 }

@@ -1,6 +1,7 @@
 {
-  "appId": "sneas.github.io",
-  "appName": "ionic-4-http",
+  "appId": "io.ionic.starter",
+  "appName": "ionic-4-http-test",
   "bundledWebRuntime": false,
+  "npmClient": "npm",
   "webDir": "www"
 }

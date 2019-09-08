@@ -1,1 +1,0 @@
-# ionic-4-http-test
