@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-tab1',
@@ -9,14 +9,18 @@ import {HttpClient} from '@angular/common/http';
 export class Tab1Page implements OnInit {
 
   constructor(
-      private httpClient: HttpClient
+      private httpClient: HttpClient,
   ) {
+    this.httpClient.get('https://httpbin.org/get?a=b', {
+      headers: new HttpHeaders({
+        'content-type': 'text/plain'
+      })
+    }).subscribe((data) => {
+      console.log('Data', data);
+    });
   }
 
   ngOnInit(): void {
-    this.httpClient.get('https://httpbin.org/get').subscribe((data) => {
-      console.log('Data', data);
-    });
   }
 
 }
