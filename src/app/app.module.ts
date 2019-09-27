@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NativeHttpBackend, NativeHttpFallback, NativeHttpModule } from 'ionic-native-http-connection-backend';
 import { HttpBackend, HttpXhrBackend} from '@angular/common/http';
-import { HttpForceXhrBackend } from '../http-force-xhr-backend';
+import { HttpForceXhrBackend } from './http-force-xhr-backend';
 
 @NgModule({
   declarations: [AppComponent],
