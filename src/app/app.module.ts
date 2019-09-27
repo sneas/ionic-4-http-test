@@ -8,8 +8,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {NativeHttpBackend, NativeHttpFallback, NativeHttpModule} from 'ionic-native-http-connection-backend';
-import {HttpBackend, HttpXhrBackend} from '@angular/common/http';
+import { NativeHttpBackend, NativeHttpFallback, NativeHttpModule } from 'ionic-native-http-connection-backend';
+import { HttpBackend, HttpXhrBackend} from '@angular/common/http';
+import { HttpForceXhrBackend } from '../http-force-xhr-backend';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,8 @@ import {HttpBackend, HttpXhrBackend} from '@angular/common/http';
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HttpBackend, useClass: NativeHttpFallback, deps: [Platform, NativeHttpBackend, HttpXhrBackend] },
+    { provide: NativeHttpFallback, useClass: NativeHttpFallback, deps: [Platform, NativeHttpBackend, HttpXhrBackend] },
+    { provide: HttpBackend, useClass: HttpForceXhrBackend, deps: [NativeHttpFallback, HttpXhrBackend] },
   ],
   bootstrap: [AppComponent]
 })

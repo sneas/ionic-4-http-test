@@ -13,7 +13,7 @@ export class Tab1Page implements OnInit {
   ) {
     this.httpClient.get('https://httpbin.org/get?a=b', {
       headers: new HttpHeaders({
-        'content-type': 'text/plain'
+        'XHR-please': 'yes, sir'
       })
     }).subscribe((data) => {
       console.log('Data', data);
